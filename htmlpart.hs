@@ -15,7 +15,4 @@ findPart (MIMEValue t@(Type (Multipart _) _) d (Multi cs) h inc) = concat $ map 
 findPart m = error $ "undefined: " ++ show m
 
 main = do
-  raw <- getContents
-  let m = parseMIMEMessage raw
-  let res = findPart m
-  putStrLn res
+  getContents >>= putStrLn . findPart . parseMIMEMessage 
